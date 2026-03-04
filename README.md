@@ -1,13 +1,12 @@
 # Highlight Active Workspace (Zen Mod)
 
-A minimal Zen Browser mod that adds a clear, animated highlight to the currently active workspace in the sidebar.
+A minimal Zen Browser mod that adds a clear highlight to the currently active workspace in the sidebar.
 
 ## Features
 
-- **Glowing Indicator**: A vertical pill/dot indicator that slides in.
+- **High Visibility**: Adds a clear border and background highlight to the active workspace.
 - **Theme Aware**: Uses your Zen Browser accent color.
-- **Compact Mode Support**: Automatically adjusts to a dot when the sidebar is collapsed.
-- **Animations**: Smooth transitions for hover and active states.
+- **Depth**: Adds a subtle drop shadow and inner glow for better visibility.
 
 ## Installation
 
