@@ -1,0 +1,73 @@
+/* ==================================================================
+   Zen Mod: Advanced Active Workspace Highlight
+   ================================================================== */
+
+/* 1. Base Button Styling & Animation Setup */
+#zen-workspaces toolbarbutton {
+    position: relative !important;
+    /* Required for absolute positioning of the indicator */
+    transition: background-color 0.2s ease, opacity 0.2s ease !important;
+    overflow: visible !important;
+    /* Allows the glow to bleed slightly */
+    border: none !important;
+    /* Reset default borders if any */
+}
+
+/* 2. The Indicator (Glowing Pill/Dot) */
+/* We use ::before so it doesn't interfere with the icon/text content */
+#zen-workspaces toolbarbutton::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    /* Start hidden (collapsed) */
+    width: 4px;
+    height: 16px;
+    border-radius: 4px;
+    background-color: var(--zen-accent-color);
+    box-shadow: 0 0 8px var(--zen-accent-color);
+    /* The Glow */
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+    pointer-events: none;
+    /* Click through to the button */
+    z-index: 2;
+}
+
+/* 3. Active State Logic (Future-Proof Selectors) */
+/* Checks for standard Zen active states and fallback attributes */
+#zen-workspaces toolbarbutton[active="true"],
+#zen-workspaces toolbarbutton[selected="true"],
+#zen-workspaces toolbarbutton:is([checked], [aria-selected="true"]) {
+    /* Use color-mix for a subtle tint that works in Light & Dark mode */
+    background-color: color-mix(in srgb, var(--zen-accent-color) 15%, transparent) !important;
+    opacity: 1 !important;
+}
+
+/* 4. Trigger the Indicator Animation */
+#zen-workspaces toolbarbutton[active="true"]::before,
+#zen-workspaces toolbarbutton[selected="true"]::before,
+#zen-workspaces toolbarbutton:is([checked], [aria-selected="true"])::before {
+    opacity: 1;
+    transform: translateY(-50%) scaleY(1);
+    /* Animate to full height */
+}
+
+/* 5. Hover State */
+#zen-workspaces toolbarbutton:hover:not([active="true"]) {
+    /* A neutral hover that respects the theme */
+    background-color: var(--zen-colors-border, rgba(128, 128, 128, 0.15)) !important;
+}
+
+/* 6. Compact Mode Adjustments (Optional) */
+/* If the sidebar is very thin, we adjust the indicator to be a dot */
+@media (max-width: 60px) {
+    #zen-workspaces toolbarbutton::before {
+        left: 4px;
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        /* Turn pill into a dot */
+    }
+}
