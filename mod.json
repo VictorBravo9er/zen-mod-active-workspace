@@ -2,5 +2,9 @@
     "name": "Highlight Active Workspace",
     "description": "Adds a clear highlight to the currently active workspace in the workspace selector.",
     "author": "victorbravo9er",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "files": [
+        "chrome.css"
+    ],
+    "homepage": "https://github.com/your-repo"
 }
